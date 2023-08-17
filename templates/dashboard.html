@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Dashboard</title>
+</head>
+<body>
+    <h1>Video Dashboard</h1>
+    <form action="/update_search_query" method="POST">
+        <label for="search_query">Enter Search Query:</label>
+        <input type="text" id="search_query" name="search_query" required>
+        <button type="submit">Update Search Query</button>
+    </form>
+    
+    <form action="/sort_videos" method="GET">
+        <label for="sort_by">Sort By:</label>
+        <select id="sort_by" name="sort_by">
+            <option value="published_at_desc">Published At (Descending)</option>
+            <option value="published_at_asc">Published At (Ascending)</option>
+            <option value="title_asc">Title (Ascending)</option>
+            <option value="title_desc">Title (Descending)</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+    
+    
+    
+    
+    <ul>
+        {% for video in videos %}
+        <li>
+            <h3>{{ video.title }}</h3>
+            <p>{{ video.description }}</p>
+            <p>Published At: {{ video.published_at }}</p>
+            <img src="{{ video.thumbnail_url }}" alt="Thumbnail">
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
